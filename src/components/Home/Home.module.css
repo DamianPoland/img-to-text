@@ -1,0 +1,188 @@
+/* all */
+
+.btn {
+    background-color: white;
+    padding: 1rem;
+    font-size: 1.5rem;
+    color: rgba(var(--accent), 1);
+    border: 0.1rem solid rgba(var(--accent), 0.8);
+    box-shadow: 0 0 10px rgba(var(--accent), 0.5);
+    cursor: pointer;
+    width: 80%;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn:hover {
+    box-shadow: 0 0 20px rgba(var(--accent), 0.5);
+}
+
+.svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 1rem;
+}
+
+
+/* decoder section */
+
+.decoder {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../../assets/photo.jpg) center fixed no-repeat;
+    background-size: cover;
+}
+
+.decoder_container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 3rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.decoder_title {
+    font-size: 3rem;
+    padding: 2rem 0.5rem 1rem 0.5rem;
+    text-align: center;
+}
+
+.decoder_title2 {
+    font-size: 2rem;
+    padding: 1rem 0.5rem;
+    text-align: center;
+    color: rgb(var(--accent));
+}
+
+.decoder_desc {
+    font-size: 1rem;
+    padding: 1rem 0.5rem 2rem 0.5rem;
+    max-width: 600px;
+    text-align: center;
+
+}
+
+.decoder_content {
+    max-width: 500px;
+    background-color: white;
+    color: black;
+    padding: 2rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.decoder_contentProgressContainer {
+    padding: 0.5rem;
+    background: rgba(196, 196, 196, 0.8);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+}
+
+.decoder_contentProgress {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 1rem;
+}
+
+.decoder_contentProgress::-webkit-progress-bar {
+    background: white;
+}
+
+.decoder_contentProgress::-webkit-progress-value {
+    background-image:
+        -webkit-linear-gradient(-45deg,
+            transparent 33%, rgba(0, 0, 0, .1) 33%,
+            rgba(0, 0, 0, .1) 66%, transparent 66%),
+        -webkit-linear-gradient(top,
+            rgba(255, 255, 255, .25),
+            rgba(0, 0, 0, .25)),
+        -webkit-linear-gradient(left, rgb(0, 0, 200), rgb(0, 200, 0));
+}
+
+.decoder_contentInputContainer {
+    margin-bottom: 2rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.decoder_contentInputInput {
+    display: none;
+}
+
+.decoder_contentInputLabel {}
+
+.decoder_contentFigure {
+    width: 100%;
+    min-height: 320px;
+    border: 1px solid rgba(var(--accent), 0.5);
+    box-shadow: 0 0 5px rgba(var(--accent), 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.decoder_contentDecodedText {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    color: black;
+    z-index: 1;
+    background: white;
+}
+
+.decoder_contentDecodedTextSVG {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0.3rem;
+    fill: rgba(var(--accent), 0.8);
+}
+
+.decoder_contentDecodedTextSVG:active {
+    transform: scale(1.5);
+    fill: black;
+}
+
+.decoder_contentDecodedTextHint {
+    padding-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.decoder_contentDecodedTextDesc {
+    white-space: pre-wrap;
+}
+
+.decoder_contentImg {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.decoder_contentSelect {
+    text-align-last: center;
+    margin: 2rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    width: 60%;
+    box-shadow: 0 0 5px rgba(var(--accent), 0.5);
+}
+
+.decoder_contentOption {}
+
+.decoder_contentButton {}

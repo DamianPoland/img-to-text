@@ -1,0 +1,63 @@
+* {
+    /* add color in index.css eg: --accent: 0, 200, 0;*/
+    --colorPrivacy: var(--accent);
+    --backgroundPrivacy: var(--backgroundCustom);
+    --backgroundLineHome: var(--gray);
+}
+
+
+.background {
+    background: var(--backgroundPrivacy);
+    color: black;
+}
+
+.privacyContainer {
+    margin: 60px auto 0 auto;
+    max-width: 1200px;
+}
+
+.privacyContainer figure {
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
+}
+
+.privacyContainer img {
+    max-width: 100%;
+}
+
+.privacyContainer h1 {
+    font-size: 2rem;
+    text-align: center;
+    padding: 3rem 0 0 0;
+}
+
+.privacyContainer hr {
+    margin: 3rem 0;
+}
+
+.privacyContainer h2 {
+    font-size: 1.5rem;
+    padding: 1rem 2rem 0.5rem 2rem;
+    color: rgb(var(--colorPrivacy));
+}
+
+.privacyContainer ul {
+    padding: 1rem;
+    line-height: 1.5rem;
+}
+
+.privacyContainer ol {
+    padding: 1rem 2rem;
+    line-height: 1.5rem;
+}
+
+.privacyContainer li {
+    font-size: 1rem;
+    padding: 0.5rem;
+}
+
+.privacyContainer p {
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
