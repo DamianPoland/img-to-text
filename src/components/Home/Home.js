@@ -82,7 +82,7 @@ const Home = () => {
         setShowSpinner(true)
 
         //api key
-        const apiKEY = 'b46ded637f88957' //free api key from https://ocr.space/ (subscription stuidowww.com@gmail.com), limit: 500 calls/day, 25000 requests/month, max size 1MB
+        const apiKEY = '' //free api key from https://ocr.space/ (subscription stuidowww.com@gmail.com), limit: 500 calls/day, 25000 requests/month, max size 1MB
 
         // OCR URL - apiKEY(private API KEY from OCR)
         const imgURL = `https://api.ocr.space/parse/imageurl?apikey=${apiKEY}&url=${encodeURIComponent(imageURL)}&language=${language}&detectOrientation=true`
