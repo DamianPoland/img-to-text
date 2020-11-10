@@ -9,7 +9,7 @@
 
 html,
 body {
-  font-size: 16px;
+  font-size: 100%;
   background-color: black;
   color: white;
   overflow-x: hidden;
@@ -21,7 +21,7 @@ body {
 }
 
 :root {
-  --accent: 200, 0, 0;
+  --accent: 255, 0, 0;
   /* #c80000 */
 
   /* background */

@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import style from './Home.module.css'
 import { storage } from '../../shared/fire'
-import Question from '../../assets/question.png'
 import axios from 'axios'
 import Spinner from '../../UI/Spinner/Spinner'
 import Alert from '../../UI/Alert/Alert'
+import AlertSmall from '../../UI/AlertSmall/AlertSmall'
+
+
+// imgs 
+import Question from '../../assets/question.png'
+import Background from '../../assets/background.png'
+
 
 //icons
 import { ReactComponent as Upload } from '../../assets/upload.svg'
@@ -21,6 +27,8 @@ const Home = () => {
     const [showProgress, setShowProgress] = useState(false) // set progress visibility
     const [showAlert, setShowAlert] = useState(false) // set alert visibility
     const [showDecodedText, setShowDecodedText] = useState(false) // set alert visibility
+    const [showAlertSmallCopy, setShowAlertSmallCopy] = useState(false) // set alert 'Skopiowano' visibility
+    const [showAlertSmallFirstAddPhoto, setShowAlertSmallFirstAddPhoto] = useState(false) // set alert 'najpierw dodaj zdjęcie' visibility
 
     // get photo from file/camera
     const getPhoto = e => {
@@ -78,6 +86,11 @@ const Home = () => {
     // read text from photo
     const handleReadText = () => {
 
+        if (imageURL === '') {
+            setShowAlertSmallFirstAddPhoto(true)
+            return
+        }
+
         // show spinner
         setShowSpinner(true)
 
@@ -91,7 +104,7 @@ const Home = () => {
         axios.get(imgURL, { timeout: 20000 }) //set timeout because some times take to long to decode - add second parameter: , { timeout: 15000 }
             .then(res => {
                 console.log('axios res: ', res)
-                console.log('axios res TEXT: \n', res.data.ParsedResults[0].ParsedText)
+                console.log('axios res TEXT:\n', res.data.ParsedResults[0].ParsedText)
                 setShowSpinner(false) // hide spinner
                 res.data.ParsedResults[0].ParsedText !== '' ? setShowDecodedText(res.data.ParsedResults[0].ParsedText) : setShowDecodedText('Brak tekstu') // set decoded text if not empty
 
@@ -107,12 +120,15 @@ const Home = () => {
     const copyDecodedText = () => {
         navigator.clipboard.writeText(showDecodedText) // topy text to clipboard
         console.log('skopiowano:\n', showDecodedText);
+        setShowAlertSmallCopy(true) // set alesrt 'Skopiowano'
     }
 
     return (
         <section className={style.decoder}>
+            {showAlertSmallCopy && <AlertSmall description='Skopiowano' hide={() => setShowAlertSmallCopy(false)} />}
+            {showAlertSmallFirstAddPhoto && <AlertSmall description='Najpierw dodaj zdjęcie' hide={() => setShowAlertSmallFirstAddPhoto(false)} alertIcon='info' borderColor='orange' />}
             <div className={style.decoder_container}>
-                <h1 className={style.decoder_title}>Rozpoznawanie textu</h1>
+                <h1 className={style.decoder_title}>Rozpoznawanie tekstu</h1>
                 <h2 className={style.decoder_title2}>Darmowa usługa</h2>
                 <p className={style.decoder_desc}>Skożystaj z darmowego narzędzia do rozponawania znaków. Serwis umożliwia konwersję w 24 językach.</p>
                 <div className={style.decoder_content}>
@@ -131,6 +147,8 @@ const Home = () => {
                             Wybierz zdjęcie
                         </label>
                     </div>
+
+
                     <figure className={style.decoder_contentFigure}>
                         {showSpinner && <Spinner />}
                         {showProgress &&
@@ -146,11 +164,16 @@ const Home = () => {
                                 <p className={style.decoder_contentDecodedTextHint}>Rozpoznany tekst:</p>
                                 <p className={style.decoder_contentDecodedTextDesc}>{showDecodedText}</p>
                             </div>}
-                        <img className={style.decoder_contentImg} src={imageURL || Question} alt='img' />
+                        <img className={style.decoder_contentImgQuestion} src={Background} alt='img background ' />
+                        <img className={style.decoder_contentImg} src={imageURL || Question} alt='img question' />
                     </figure>
+
+
                     <select onChange={(e) => setLanguage(languageList.find(item => item.name === e.target.value).code)} className={`${style.decoder_contentSelect} ${style.btn}`}>
                         {languageList.map((item) => <option key={item.code} className={style.decoder_contentOption}>{item.name}</option>)}
                     </select>
+
+
                     <button className={`${style.decoder_contentButton} ${style.btn}`} onClick={handleReadText}>
                         <div className={style.svg}>
                             <Shuffle />
