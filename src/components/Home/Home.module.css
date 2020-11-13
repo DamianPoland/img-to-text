@@ -27,6 +27,7 @@
     width: 1.5rem;
     height: 1.5rem;
     margin-right: 1rem;
+    fill: rgba(var(--accent), 0.8);
 }
 
 
@@ -234,6 +235,7 @@
     padding: 1rem;
     width: 6rem;
     height: 6rem;
+    fill: rgba(var(--accent), 0.8);
 }
 
 .description_containerItemDesc {

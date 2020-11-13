@@ -18,8 +18,8 @@ const PrivacyPolicy = () => {
                 <div>
                     <h2><strong>1. Informacje ogólne</strong></h2>
                     <ol>
-                        <li>Niniejsza polityka dotyczy Serwisu www, funkcjonującego pod adresem url: <b>studio-www.com</b></li>
-                        <li>Operatorem serwisu oraz Administratorem danych osobowych jest: studio-www ul. Kaliska 22, Gdynia, Poland</li>
+                        <li>Niniejsza polityka dotyczy Serwisu www, funkcjonującego pod adresem url: <b>text-ze-zdjecia.web.app</b></li>
+                        <li>Operatorem serwisu oraz Administratorem danych osobowych jest: studio-www.com</li>
 
                         <li>Adres kontaktowy poczty elektronicznej operatora: info@studio-www.com</li>
 
@@ -39,7 +39,7 @@ const PrivacyPolicy = () => {
                     </ol>
                     <h2><strong>3. Hosting</strong></h2>
                     <ol>
-                        <li>Serwis jest hostowany (technicznie utrzymywany) na serwera operatora: ovh.pl</li>
+                        <li>Serwis jest hostowany (technicznie utrzymywany) na serwera operatora: firebase.google.com</li>
                     </ol>
                     <h2><strong>4. Twoje prawa i dodatkowe informacje o sposobie wykorzystania danych</strong></h2>
                     <ol><li>W niektórych sytuacjach Administrator ma prawo przekazywać Twoje dane osobowe innym odbiorcom, jeśli będzie to niezbędne do wykonania zawartej z Tobą umowy lub do zrealizowania obowiązków ciążących na Administratorze. Dotyczy to takich grup odbiorców:<ul><li>firma hostingowa na zasadzie powierzenia</li></ul></li>

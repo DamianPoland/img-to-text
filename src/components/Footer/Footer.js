@@ -9,11 +9,11 @@ const Footer = () => {
         <div className={style.background}>
             <div className={style.container}>
                 <a href='/privacy-policy' className={`${style.text} ${style.link}`}>Polityka prywatności</a>
-                <p className={style.text}>Copyright © 2020</p>
+                <p className={style.text}>Copyright © studio-www 2020</p>
                 <a href='https://studio-www.com' target='blank' className={style.designedBy}>
                     <span className={`${style.text} ${style.textLeft}`}>Designed by</span>
                     <img className={style.logo} src={logo} alt='logo' />
-                    <span className={`${style.text} ${style.textRight}`}>studio-www</span>
+                    <span className={`${style.text} ${style.textRight}`}>studio-www.com</span>
                 </a>
             </div>
         </div>

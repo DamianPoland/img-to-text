@@ -12,18 +12,14 @@
     z-index: 900;
     display: flex;
     align-items: center;
+    justify-content: center;
     padding: 1rem;
-    animation: showPrivacy 0.5s;
+    transform: translateY(100%);
+    transition: transform 0.5s ease-in-out;
 }
 
-@keyframes showPrivacy {
-    0% {
-        transform: translateY(100%);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
+.containerShow {
+    transform: translateY(0);
 }
 
 .button {
@@ -34,6 +30,7 @@
     color: white;
     outline: none;
     cursor: pointer;
+    margin-left: 1rem;
 }
 
 .button:hover {
@@ -60,6 +57,7 @@
     color: white;
     opacity: 0.6;
     cursor: pointer;
+    padding-left: 1rem;
 }
 
 .anchor:hover {

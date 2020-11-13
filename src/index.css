@@ -11,6 +11,8 @@ html,
 body {
   font-size: 100%;
   background-color: black;
+  z-index: -10;
+  position: relative;
   color: white;
   overflow-x: hidden;
 

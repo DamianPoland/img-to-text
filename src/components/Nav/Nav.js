@@ -20,11 +20,11 @@ const Nav = props => {
             <nav className={style.container}>
                 <div className={style.header}>
                     <img className={style.headerImg} src={logo} alt='logo' />
-                    <p className={style.headerDesc}>Text ze zdjęcia</p>
+                    <p className={style.headerDesc}>Tekst ze zdjęcia</p>
                 </div>
                 <ul onClick={() => setIsOpenMobileMenu(false)} className={`${style.list} ${styleMobileMenu}`}>
                     <li className={style.listItem}><NavLink to='/home' activeClassName={style.activeLink} className={style.listItemAnchor}>Strona główna</NavLink></li>
-                    <li className={style.listItem}><NavLink to='/about' activeClassName={style.activeLink} className={style.listItemAnchor}>O servisie</NavLink></li>
+                    <li className={style.listItem}><NavLink to='/about' activeClassName={style.activeLink} className={style.listItemAnchor}>O serwisie</NavLink></li>
                 </ul>
                 <div onClick={() => setIsOpenMobileMenu(!isOpenMobileMenu)} className={`${style.burgerMenu} ${styleMobileButtonBurger}`}>
                     <div className={style.burgerBtn}></div>

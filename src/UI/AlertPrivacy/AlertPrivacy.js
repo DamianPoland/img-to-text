@@ -1,20 +1,35 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import style from './AlertPrivacy.module.css'
-
 
 /* 
 komponent do pokazywania akceptacji privacy policy
-w props musi się znaleść:
-- click => kliknięcie powinno zapisać w localStorage że zostało udzielone pozwolenie
+Trzeba TYLKO dodać komponent do App.js. Sam się pokaże i ukryje po kliknięciu przycisku a takze zapisze w localStorage info że zaakceptowane
 */
 
-const AlertPrivacy = ({ click }) => {
+const AlertPrivacy = () => {
+
+    //alert visibility 
+    const [isAlertVisible, setIsAlertVisible] = useState(false)
+    const alertVisibility = isAlertVisible ? style.containerShow : null
+
+    // privacy policy permission check
+    useEffect(() => {
+        localStorage.getItem('PRIVACY_POLICY_PERMISSION') ? setIsAlertVisible(false) : setIsAlertVisible(true)
+    }, [])
+
+    // function onClick to hide alert
+    const hideAlert = () => {
+        localStorage.setItem('PRIVACY_POLICY_PERMISSION', true)
+        setIsAlertVisible(false)
+    }
+
+
     return (
-        <div className={style.container}>
+        <div className={`${style.container} ${alertVisibility}`}>
             <div className={style.content}>
-                <p className={style.text}>Ta strona korzysta z plików cookie oraz Google Analytics, aby dostarczyć nam (w pełni anonimowych) statystyk. Dane, które potrzebne są w fomularzu kontaktowym, używamy tylko i wyłącznie w celu skontaktowania się z Tobą. <a className={style.anchor} href='/privacy-policy'>Dowiedz się więcej</a> </p>
+                <p className={style.text}>Ta strona korzysta z plików cookie oraz Google Analytics, aby dostarczyć nam (w pełni anonimowych) statystyk.<a className={style.anchor} href='/privacy-policy'>Dowiedz się więcej</a> </p>
             </div>
-            <button onClick={click} className={style.button}>Rozumiem</button>
+            <button onClick={hideAlert} className={style.button}>Rozumiem</button>
         </div>
     )
 }

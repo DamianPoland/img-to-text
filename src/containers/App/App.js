@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
+import AlertPrivacy from '../../UI/AlertPrivacy/AlertPrivacy'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 
 // componentns
@@ -11,6 +14,13 @@ import Footer from '../../components/Footer/Footer'
 
 
 const App = () => {
+
+  // aos
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, [])
+
+
   return (
     <BrowserRouter >
       <Route path='/' component={Nav} />
@@ -21,6 +31,7 @@ const App = () => {
         <Redirect to='/home' />
       </Switch>
       <Route path='/' component={Footer} />
+      <AlertPrivacy />
     </BrowserRouter>
   );
 }
