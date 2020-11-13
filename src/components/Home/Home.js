@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import style from './Home.module.css'
-import { storage } from '../../shared/fire'
-import axios from 'axios'
+import { storage, functions } from '../../shared/fire'
 import Spinner from '../../UI/Spinner/Spinner'
 import Alert from '../../UI/Alert/Alert'
 import AlertSmall from '../../UI/AlertSmall/AlertSmall'
@@ -10,12 +9,21 @@ import AlertSmall from '../../UI/AlertSmall/AlertSmall'
 // imgs 
 import Question from '../../assets/question.png'
 import Background from '../../assets/background.png'
+import Look from '../../assets/look.png'
 
 
 //icons
-import { ReactComponent as Upload } from '../../assets/upload.svg'
 import { ReactComponent as Shuffle } from '../../assets/shuffle.svg'
 import { ReactComponent as Copy } from '../../assets/copy.svg'
+import { ReactComponent as Camera } from '../../assets/camera.svg'
+import { ReactComponent as DownArrow } from '../../assets/downArrow.svg'
+import { ReactComponent as Language } from '../../assets/language.svg'
+
+import { ReactComponent as TwentyFour } from '../../assets/twentyFour.svg'
+import { ReactComponent as Engineer } from '../../assets/engineer.svg'
+import { ReactComponent as Key } from '../../assets/key.svg'
+import { ReactComponent as Ssl } from '../../assets/ssl.svg'
+
 
 const Home = () => {
 
@@ -29,6 +37,7 @@ const Home = () => {
     const [showDecodedText, setShowDecodedText] = useState(false) // set alert visibility
     const [showAlertSmallCopy, setShowAlertSmallCopy] = useState(false) // set alert 'Skopiowano' visibility
     const [showAlertSmallFirstAddPhoto, setShowAlertSmallFirstAddPhoto] = useState(false) // set alert 'najpierw dodaj zdjęcie' visibility
+    const [showAlertSmallToBigPhoto, setShowAlertSmallToBigPhoto] = useState(false) // set alert 'Plik jest za duży' visibility
 
     // get photo from file/camera
     const getPhoto = e => {
@@ -46,13 +55,22 @@ const Home = () => {
             return
         }
 
-        setShowProgress(true) // set progress bar visibile
+        // check image size, if more than 1MB then show alert and return
+        if (image.size >= 1048576) {
+            setShowAlertSmallToBigPhoto(true)
+            return
+        }
+
 
 
         // // set photo name from date
         // const date = new Date();
         // const photoName = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + ":" + date.getMilliseconds();
         // console.log('date', photoName);
+
+
+        // set progress bar visibile
+        setShowProgress(true)
 
         // send photo to DB
         const uploadTask = storage.ref(`images/${image.name}`).put(image)
@@ -78,11 +96,6 @@ const Home = () => {
             })
     }, [image])
 
-    // read url photo when finish writing - only for log
-    useEffect(() => {
-        console.log('useEffect url: ', imageURL)
-    }, [imageURL])
-
     // read text from photo
     const handleReadText = () => {
 
@@ -94,23 +107,17 @@ const Home = () => {
         // show spinner
         setShowSpinner(true)
 
-        //api key
-        const apiKEY = '' //free api key from https://ocr.space/ (subscription stuidowww.com@gmail.com), limit: 500 calls/day, 25000 requests/month, max size 1MB
+        // send request to backend for read from photo
+        const photoConverter = functions.httpsCallable('photoConverter')
+        photoConverter({ imageURL: imageURL, language: language }) // in {} is request
 
-        // OCR URL - apiKEY(private API KEY from OCR)
-        const imgURL = `https://api.ocr.space/parse/imageurl?apikey=${apiKEY}&url=${encodeURIComponent(imageURL)}&language=${language}&detectOrientation=true`
-
-        // send request for read from photo
-        axios.get(imgURL, { timeout: 20000 }) //set timeout because some times take to long to decode - add second parameter: , { timeout: 15000 }
             .then(res => {
-                console.log('axios res: ', res)
-                console.log('axios res TEXT:\n', res.data.ParsedResults[0].ParsedText)
                 setShowSpinner(false) // hide spinner
                 res.data.ParsedResults[0].ParsedText !== '' ? setShowDecodedText(res.data.ParsedResults[0].ParsedText) : setShowDecodedText('Brak tekstu') // set decoded text if not empty
-
             })
+
             .catch(err => {
-                console.log('axios err:', err)
+                console.log(`%cPhotoConverter error from backend:\n${err}: `, 'color: red; font-weight: bold');
                 setShowSpinner(false) // hide spinner
                 setShowAlert('Nie udało się przeczytać tekstu. Spróbuj późnij.') // show alert error
             })
@@ -124,64 +131,173 @@ const Home = () => {
     }
 
     return (
-        <section className={style.decoder}>
-            {showAlertSmallCopy && <AlertSmall description='Skopiowano' hide={() => setShowAlertSmallCopy(false)} />}
-            {showAlertSmallFirstAddPhoto && <AlertSmall description='Najpierw dodaj zdjęcie' hide={() => setShowAlertSmallFirstAddPhoto(false)} alertIcon='info' borderColor='orange' />}
-            <div className={style.decoder_container}>
-                <h1 className={style.decoder_title}>Rozpoznawanie tekstu</h1>
-                <h2 className={style.decoder_title2}>Darmowa usługa</h2>
-                <p className={style.decoder_desc}>Skożystaj z darmowego narzędzia do rozponawania znaków. Serwis umożliwia konwersję w 24 językach.</p>
-                <div className={style.decoder_content}>
-                    <div className={style.decoder_contentInputContainer}>
-                        <input
-                            id='file'
-                            className={style.decoder_contentInputInput}
-                            type='file'
-                            onChange={getPhoto}
-                            accept='image/*' //'.jpg, .jpeg, .bmp, .svg, .png' w OCR Supported image file formats are png, jpg (jpeg), gif, tif (tiff) and bmp. 
-                        />
-                        <label htmlFor='file' className={`${style.decoder_contentInputLabel} ${style.btn}`}>
-                            <div className={style.svg}>
-                                <Upload />
-                            </div>
+        <section>
+
+            {/* section decoder  */}
+            <div className={style.decoder}>
+
+                {/* alert 'skopiowano' */}
+                {showAlertSmallCopy && <AlertSmall description='Skopiowano' hide={() => setShowAlertSmallCopy(false)} />}
+
+                {/* alert 'najpierw dodaj zdjęcie' */}
+                {showAlertSmallFirstAddPhoto && <AlertSmall description='Najpierw dodaj zdjęcie' hide={() => setShowAlertSmallFirstAddPhoto(false)} alertIcon='info' borderColor='orange' />}
+
+                {/* alert 'Plik jest za duży' */}
+                {showAlertSmallToBigPhoto && <AlertSmall description='Plik jest za duży' hide={() => setShowAlertSmallToBigPhoto(false)} alertIcon='info' borderColor='orange' />}
+
+                <div className={style.decoder_container}>
+                    <h1 className={style.decoder_title}>Rozpoznawanie tekstu</h1>
+                    <h2 className={style.decoder_title2}>Darmowa usługa</h2>
+                    <p className={style.decoder_desc}>Skożystaj z darmowego narzędzia do rozponawania znaków. Serwis umożliwia konwersję w 24 językach.</p>
+
+                    <div className={style.decoder_content}>
+
+                        {/* brutton 'wybierz zdjęcie' */}
+                        <div className={style.decoder_contentInputContainer}>
+                            <input
+                                id='file'
+                                className={style.decoder_contentInputInput}
+                                type='file'
+                                onChange={getPhoto}
+                                accept='image/*, .pdf' //image/* = .jpg, .jpeg, .bmp, .svg, .png, w OCR Supported image file formats are: pdf, png, jpg, gif, tif and bmp. 
+                            />
+                            <label htmlFor='file' className={`${style.decoder_contentInputLabel} ${style.btn}`}>
+                                <div className={style.svg}>
+                                    <DownArrow />
+                                </div>
                             Wybierz zdjęcie
                         </label>
-                    </div>
-
-
-                    <figure className={style.decoder_contentFigure}>
-                        {showSpinner && <Spinner />}
-                        {showProgress &&
-                            <div className={style.decoder_contentProgressContainer}>
-                                <progress className={style.decoder_contentProgress} value={progress} max='100' />
-                            </div>}
-                        {showAlert && <Alert alertName='Error' alertDetails={showAlert} click={() => setShowAlert(false)} />}
-                        {showDecodedText &&
-                            <div className={style.decoder_contentDecodedText}>
-                                <div onClick={copyDecodedText} className={`${style.decoder_contentDecodedTextSVG} ${style.svg}`}>
-                                    <Copy />
-                                </div>
-                                <p className={style.decoder_contentDecodedTextHint}>Rozpoznany tekst:</p>
-                                <p className={style.decoder_contentDecodedTextDesc}>{showDecodedText}</p>
-                            </div>}
-                        <img className={style.decoder_contentImgQuestion} src={Background} alt='img background ' />
-                        <img className={style.decoder_contentImg} src={imageURL || Question} alt='img question' />
-                    </figure>
-
-
-                    <select onChange={(e) => setLanguage(languageList.find(item => item.name === e.target.value).code)} className={`${style.decoder_contentSelect} ${style.btn}`}>
-                        {languageList.map((item) => <option key={item.code} className={style.decoder_contentOption}>{item.name}</option>)}
-                    </select>
-
-
-                    <button className={`${style.decoder_contentButton} ${style.btn}`} onClick={handleReadText}>
-                        <div className={style.svg}>
-                            <Shuffle />
                         </div>
+
+                        {/* photo container */}
+                        <figure className={style.decoder_contentFigure}>
+                            {showSpinner && <Spinner />}
+                            {showProgress &&
+                                <div className={style.decoder_contentProgressContainer}>
+                                    <progress className={style.decoder_contentProgress} value={progress} max='100' />
+                                </div>}
+                            {showAlert && <Alert alertName='Error' alertDetails={showAlert} click={() => setShowAlert(false)} />}
+                            {showDecodedText &&
+                                <div className={style.decoder_contentDecodedText}>
+                                    <div onClick={copyDecodedText} className={`${style.decoder_contentDecodedTextSVG} ${style.svg}`}>
+                                        <Copy />
+                                    </div>
+                                    <p className={style.decoder_contentDecodedTextHint}>Rozpoznany tekst:</p>
+                                    <p className={style.decoder_contentDecodedTextDesc}>{showDecodedText}</p>
+                                </div>}
+                            <img className={style.decoder_contentImgQuestion} src={Background} alt='img background ' />
+                            <img className={style.decoder_contentImg} src={imageURL || Question} alt='Brak podglądu zdjęcia.' />
+                        </figure>
+
+                        {/* choose language */}
+                        <select onChange={(e) => setLanguage(languageList.find(item => item.name === e.target.value).code)} className={`${style.decoder_contentSelect} ${style.btn}`}>
+                            {languageList.map((item) => <option key={item.code} className={style.decoder_contentOption}>{item.name}</option>)}
+                        </select>
+
+                        {/* buton 'konwertuj' */}
+                        <button className={`${style.decoder_contentButton} ${style.btn}`} onClick={handleReadText}>
+                            <div className={style.svg}>
+                                <Shuffle />
+                            </div>
                         Konwertuj
                     </button>
+
+                    </div>
                 </div>
             </div>
+
+            {/* section description */}
+            <div className={style.description_background}>
+                <div className={style.description_content}>
+                    <h1 className={style.header}>Zasada działania:</h1>
+                    <div className={style.description_container}>
+
+                        <div className={style.description_containerItem}>
+                            <div className={style.description_containerItemSVG}>
+                                <Camera />
+                            </div>
+                            <p className={style.description_containerItemDesc}><b>Przygotuj zdjęcie</b> tekstu do rozpoznania. Akceptowane formaty to: pdf, png, jpg, gif, tif, bmp. Maksymalna wielkość pliku to 1MB.</p>
+                        </div>
+
+                        <div className={style.description_containerItem}>
+                            <div className={style.description_containerItemSVG}>
+                                <DownArrow />
+                            </div>
+                            <p className={style.description_containerItemDesc}><b>Kliknij "Wybierz zdjęcie"</b>. Umożliwia wybranie zdjęcia z dysku. Po wybraniu, zdjęcie załaduje się automatycznie.</p>
+                        </div>
+
+                        <div className={style.description_containerItem}>
+                            <div className={style.description_containerItemSVG}>
+                                <Language />
+                            </div>
+                            <p className={style.description_containerItemDesc}><b>Wybierz język</b> tekstu na zdjęciu. Jeśli tego nie zrobisz program automatycznie użyje języka polskiego.</p>
+                        </div>
+
+                        <div className={style.description_containerItem}>
+                            <div className={style.description_containerItemSVG}>
+                                <Shuffle />
+                            </div>
+                            <p className={style.description_containerItemDesc}><b>Kliknij "Konwertuj"</b>. Czas przetwarzania zdjęcia może się róznić. Zwykle jest to kilka sekund ale czasem może trwac nawet 1 minutę.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            {/* section advantages */}
+            <div className={style.advantages_background}>
+                <div className={style.advantages_content}>
+
+                    <figure className={style.advantages_figure}>
+                        <img className={style.advantages_img} src={Look} alt='look' />
+                    </figure>
+
+                    <div className={style.advantages_desc}>
+                        <h1 className={style.header}>Co zyskujesz?</h1>
+                        <div className={style.advantages_container}>
+
+                            <div className={style.advantages_containerItem}>
+                                <div className={style.advantages_containerItemSVG}>
+                                    <Key />
+                                </div>
+                                <p className={style.advantages_containerItemDesc}>Szybki i wygodny dotęp.</p>
+                            </div>
+
+                            <div className={style.advantages_containerItem}>
+                                <div className={style.advantages_containerItemSVG}>
+                                    <TwentyFour />
+                                </div>
+                                <p className={style.advantages_containerItemDesc}>Konwerter obsługujący 24 języki.</p>
+                            </div>
+
+                            <div className={style.advantages_containerItem}>
+                                <div className={style.advantages_containerItemSVG}>
+                                    <Engineer />
+                                </div>
+                                <p className={style.advantages_containerItemDesc}>Bardzo dokładny silnik OCR.</p>
+                            </div>
+
+                            <div className={style.advantages_containerItem}>
+                                <div className={style.advantages_containerItemSVG}>
+                                    <Ssl />
+                                </div>
+                                <p className={style.advantages_containerItemDesc}>Ochrona danych dzięki protokołowi SSL.</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            {/* <div>
+                <p>W celu zwiększenia jakości rozpoznania możesz spróbować:</p>
+                <p>Usunąć niepotrzebne części obrazu — obrazki, tabele</p>
+                <p>Tekst musi być umieszczony poziomo, bez nachylenia</p>
+            </div> */}
         </section>
     )
 }

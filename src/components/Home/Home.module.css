@@ -19,6 +19,10 @@
     box-shadow: 0 0 20px rgba(var(--accent), 0.3);
 }
 
+.header {
+    font-size: 3rem;
+}
+
 .svg {
     width: 1.5rem;
     height: 1.5rem;
@@ -37,7 +41,7 @@
 .decoder_container {
     max-width: 1200px;
     margin: auto;
-    padding: 3rem 1rem;
+    padding: 4rem 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -193,3 +197,141 @@
 .decoder_contentOption {}
 
 .decoder_contentButton {}
+
+
+/* description section */
+
+.description_background {
+    background: var(--backgroundCustom);
+    color: black;
+}
+
+.description_content {
+    max-width: 1200px;
+    margin: auto;
+    padding: 4rem 1rem 3rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.description_container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding-top: 1rem;
+}
+
+.description_containerItem {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.description_containerItemSVG {
+    padding: 1rem;
+    width: 6rem;
+    height: 6rem;
+}
+
+.description_containerItemDesc {
+    font-size: 1rem;
+}
+
+
+/* advantages section */
+
+.advantages_background {
+    background: var(--backgroundCustom);
+    background-size: cover;
+    position: relative;
+    color: black;
+}
+
+.advantages_content {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    padding: 0 1rem;
+}
+
+.advantages_figure {
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    align-self: flex-end;
+}
+
+.advantages_img {
+    width: 100%;
+    height: 100%;
+    vertical-align: top;
+}
+
+
+.advantages_desc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    flex: 1;
+}
+
+.advantages_container {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 0;
+}
+
+.advantages_containerItem {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.advantages_containerItemSVG {
+    padding: 0.6rem;
+    fill: rgb(255, 0, 0);
+    box-shadow: 0 0 10px red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.advantages_containerItemSVG svg {
+    width: 3rem;
+    height: 3rem;
+}
+
+.advantages_containerItemDesc {
+    font-size: 1.5rem;
+    padding-left: 2rem;
+}
+
+
+
+
+/* media */
+
+@media (max-width:800px) {
+
+    .header {
+        font-size: 2rem;
+    }
+
+    .description_container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .advantages_containerItemSVG svg {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    .advantages_containerItemDesc {
+        font-size: 1rem;
+        padding-left: 1rem;
+    }
+}
