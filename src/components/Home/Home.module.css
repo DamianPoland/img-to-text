@@ -13,10 +13,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    fill: rgba(var(--accent), 0.8);
 }
 
 .btn:hover {
     box-shadow: 0 0 20px rgba(var(--accent), 0.3);
+}
+
+.btn:active {
+    box-shadow: 0 0 20px rgba(var(--accent), 0.8);
+    background-color: rgba(var(--accent), 1);
+    color: white;
+    fill: white;
+
 }
 
 .header {
@@ -27,7 +36,7 @@
     width: 1.5rem;
     height: 1.5rem;
     margin-right: 1rem;
-    fill: rgba(var(--accent), 0.8);
+    fill: inherit;
 }
 
 
@@ -60,6 +69,8 @@
     padding: 1rem 0.5rem;
     text-align: center;
     color: rgb(var(--accent));
+    font-family: 'Handlee', cursive, Arial;
+    font-weight: bold;
 }
 
 .decoder_desc {
