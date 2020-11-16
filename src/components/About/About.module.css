@@ -55,6 +55,7 @@
 .service_infoHeader {
     font-size: 2rem;
     padding-left: 1rem;
+    font-family: 'Kalam', cursive;
 }
 
 .service_infoDesc {
