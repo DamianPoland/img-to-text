@@ -125,6 +125,8 @@ const Home = () => {
 
         // send request to backend for read from photo
         const photoConverter = functions.httpsCallable('photoConverter')
+        console.log('imageURL: ', imageURL);
+        console.log('language: ', language);
         photoConverter({ imageURL: imageURL, language: language }) // in {} is request
 
             .then(res => {

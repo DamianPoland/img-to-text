@@ -1,6 +1,6 @@
 export const languageList = [
     { name: 'polski', code: 'pol' },
-    { name: 'angielski', code: 'ang' },
+    { name: 'angielski', code: 'eng' },
     { name: 'arabski', code: 'ara' },
     { name: 'bułgarski', code: 'bul' },
     { name: 'chiński upr', code: 'chs' },

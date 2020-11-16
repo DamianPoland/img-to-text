@@ -65,12 +65,12 @@
 }
 
 .decoder_title2 {
-    font-size: 2rem;
+    font-size: 3rem;
     padding: 1rem 0.5rem;
     text-align: center;
     color: rgb(var(--accent));
-    font-family: 'Handlee', cursive, Arial;
     font-weight: bold;
+    font-family: 'Kalam', cursive;
 }
 
 .decoder_desc {
@@ -78,7 +78,6 @@
     padding: 1rem 0.5rem 2rem 0.5rem;
     max-width: 800px;
     text-align: center;
-
 }
 
 .decoder_content {
@@ -175,12 +174,34 @@
 }
 
 .decoder_contentDecodedTextHint {
+    font-size: 1rem;
     padding-bottom: 0.5rem;
     font-weight: bold;
 }
 
 .decoder_contentDecodedTextDesc {
+    height: calc(100% - 2rem);
+    width: 100%;
     white-space: pre-wrap;
+    overflow: auto;
+
+    /* scrollbar ONLY for mozilla, scrollbar-width - "auto" or "thin"  */
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) white;
+}
+
+/* custom scroll bar in body (mobile not work) */
+.decoder_contentDecodedTextDesc::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+.decoder_contentDecodedTextDesc::-webkit-scrollbar-track {
+    background: white;
+}
+
+.decoder_contentDecodedTextDesc::-webkit-scrollbar-thumb {
+    background: rgba(var(--accent), 0.6);
+    border-radius: 999px;
 }
 
 .decoder_contentImgQuestion {

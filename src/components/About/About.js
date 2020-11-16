@@ -20,7 +20,7 @@ const About = () => {
 
     return (
         <section className={style.background}>
-            <video className={style.backgroundVideo} src={backgroundVideo} autoPlay muted loop type="video/mp4" alt="background Video" />
+            <video className={style.backgroundVideo} src={backgroundVideo} playsInline autoPlay muted loop type="video/mp4" alt="background Video" />
             <div className={style.container}>
                 <div className={style.service}>
 
@@ -35,7 +35,7 @@ const About = () => {
                                 </div>
                                 <h2 className={style.service_infoHeader}>Podstawowe informacje:</h2>
                             </div>
-                            <p className={style.service_infoDesc}>Portal text-ze-zdjecia.web.app jest w pełni bezpłatną usługą OCR <i>(ang. optical character recognition)</i>, która umożliwia konwersję zdjęć oraz plików pdf aby rozpoznać zawarty na nich tekst. Nie ma potrzeby rejestracji lub instalowania aplikacji na urządzeniu. Całe zadanie jest wykonywane w przeglądarce.Konwerter rozpoznaje wszystkie znaki. Jest w stanie poprawnie odczytać tekst w 24 językach. </p>
+                            <p className={style.service_infoDesc}>Portal text-ze-zdjecia.web.app jest w pełni bezpłatną usługą OCR <i>(ang. optical character recognition)</i>, która umożliwia konwersję zdjęć oraz plików pdf, aby rozpoznać zawarty na nich tekst. Nie ma potrzeby rejestracji lub instalowania aplikacji na urządzeniu. Całe zadanie jest wykonywane w przeglądarce. Konwerter rozpoznaje wszystkie znaki. Jest w stanie poprawnie odczytać tekst w 24 językach. </p>
                         </div>
 
                         <div className={style.service_infoContainer}>
@@ -45,7 +45,7 @@ const About = () => {
                                 </div>
                                 <h2 className={style.service_infoHeader}>Wymagania:</h2>
                             </div>
-                            <p data-aos="fade-up-left" className={style.service_infoDesc}>Pliki poddawane konwersji nie mogą być większe niż 1 MB. Akceptowane formaty plików to: pdf, png, jpg, gif, tif, bmp. Każdy może podadć konwersji maxymalnie 50 plików dziennie. Aby popawić jakość odczytywania zdjęcia postaraj się umieścić zdjęcie z tekstem umieszczonym poziomo oraz w miarę możliwości usuń nieptrzebne elementy takie jak obrazki lub tabele.  </p>
+                            <p data-aos="fade-up-left" className={style.service_infoDesc}>Pliki poddawane konwersji nie mogą być większe niż 1 MB. Akceptowane formaty plików to: pdf, png, jpg, gif, tif, bmp. Każdy może podać konwersji maksymalnie 50 plików dziennie. Aby poprawić jakość odczytywania zdjęcia postaraj się umieścić zdjęcie z tekstem umieszczonym poziomo oraz w miarę możliwości usuń niepotrzebne elementy takie jak obrazki lub tabele.  </p>
                         </div>
 
                         <div className={style.service_infoContainer}>
