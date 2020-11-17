@@ -1,6 +1,6 @@
 import React from 'react'
 import style from './PrivacyPolicy.module.css'
-import privacy from '../../assets/privacy.jpg'
+import privacy from './privacy.jpg'
 
 
 const PrivacyPolicy = () => {
