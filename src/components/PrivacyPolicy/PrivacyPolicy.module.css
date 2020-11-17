@@ -42,6 +42,10 @@
     color: rgb(var(--colorPrivacy));
 }
 
+.font {
+    font-family: 'Kalam', cursive;
+}
+
 .privacyContainer ul {
     padding: 1rem;
     line-height: 1.5rem;

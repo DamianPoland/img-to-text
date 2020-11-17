@@ -1,5 +1,5 @@
 .background {
-    background: radial-gradient(circle, rgba(150, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 100%);
+    background: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgb(200, 0, 0) 50%, rgba(0, 0, 0, 1) 100%);
 }
 
 .container {

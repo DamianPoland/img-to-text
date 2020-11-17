@@ -16,7 +16,7 @@ const PrivacyPolicy = () => {
                 <h2>Polityka prywatności opisuje zasady przetwarzania przez nas informacji na Twój temat, w tym danych osobowych oraz ciasteczek, czyli tzw. cookies.</h2>
                 <hr />
                 <div>
-                    <h2><strong>1. Informacje ogólne</strong></h2>
+                    <h2><strong className={style.font}>1. Informacje ogólne</strong></h2>
                     <ol>
                         <li>Niniejsza polityka dotyczy Serwisu www, funkcjonującego pod adresem url: <b>text-ze-zdjecia.web.app</b></li>
                         <li>Operatorem serwisu oraz Administratorem danych osobowych jest: studio-www.com</li>
@@ -34,14 +34,14 @@ const PrivacyPolicy = () => {
                             </ol>
                         </li>
                     </ol>
-                    <h2><strong>2. Wybrane metody ochrony danych stosowane przez Operatora</strong></h2>
+                    <h2><strong className={style.font}>2. Wybrane metody ochrony danych stosowane przez Operatora</strong></h2>
                     <ol><li>Miejsca logowania i wprowadzania danych osobowych są chronione w warstwie transmisji (certyfikat SSL). Dzięki temu dane osobowe i dane logowania, wprowadzone na stronie, zostają zaszyfrowane w komputerze użytkownika i mogą być odczytane jedynie na docelowym serwerze.</li><li>W celu ochrony danych Operator regularnie wykonuje kopie bezpieczeństwa.</li><li>Istotnym elementem ochrony danych jest regularna aktualizacja wszelkiego oprogramowania, wykorzystywanego przez Operatora do przetwarzania danych osobowych, co w szczególności oznacza regularne aktualizacje komponentów programistycznych.</li>
                     </ol>
-                    <h2><strong>3. Hosting</strong></h2>
+                    <h2><strong className={style.font}>3. Hosting</strong></h2>
                     <ol>
                         <li>Serwis jest hostowany (technicznie utrzymywany) na serwera operatora: firebase.google.com</li>
                     </ol>
-                    <h2><strong>4. Twoje prawa i dodatkowe informacje o sposobie wykorzystania danych</strong></h2>
+                    <h2><strong className={style.font}>4. Twoje prawa i dodatkowe informacje o sposobie wykorzystania danych</strong></h2>
                     <ol><li>W niektórych sytuacjach Administrator ma prawo przekazywać Twoje dane osobowe innym odbiorcom, jeśli będzie to niezbędne do wykonania zawartej z Tobą umowy lub do zrealizowania obowiązków ciążących na Administratorze. Dotyczy to takich grup odbiorców:<ul><li>firma hostingowa na zasadzie powierzenia</li></ul></li>
                         <li>Twoje dane osobowe przetwarzane przez Administratora nie dłużej, niż jest to konieczne do wykonania związanych z nimi czynności określonych osobnymi przepisami (np. o prowadzeniu rachunkowości). W odniesieniu do danych marketingowych dane nie będą przetwarzane dłużej niż przez 3 lata.</li>
                         <li>Przysługuje Ci prawo żądania od Administratora:
@@ -58,7 +58,7 @@ const PrivacyPolicy = () => {
                         <li>Podanie danych osobowych jest dobrowolne, lecz niezbędne do obsługi Serwisu.</li>
                         <li>W stosunku do Ciebie mogą być podejmowane czynności polegające na zautomatyzowanym podejmowaniu decyzji, w tym profilowaniu w celu świadczenia usług w ramach zawartej umowy oraz w celu prowadzenia przez Administratora marketingu bezpośredniego.</li>
                         <li>Dane osobowe nie są przekazywane od krajów trzecich w rozumieniu przepisów o ochronie danych osobowych. Oznacza to, że nie przesyłamy ich poza teren Unii Europejskiej.</li></ol>
-                    <h2><strong>5. Informacje w formularzach</strong></h2>
+                    <h2><strong className={style.font}>5. Informacje w formularzach</strong></h2>
                     <ol>
                         <li>Serwis zbiera informacje podane dobrowolnie przez użytkownika, w tym dane osobowe, o ile zostaną one podane.</li>
                         <li>Serwis może zapisać informacje o parametrach połączenia (oznaczenie czasu, adres IP).</li>
@@ -66,13 +66,13 @@ const PrivacyPolicy = () => {
                         <li>Dane podane w formularzu są przetwarzane w celu wynikającym z funkcji konkretnego formularza, np. w celu dokonania procesu obsługi zgłoszenia serwisowego lub kontaktu handlowego, rejestracji usług itp. Każdorazowo kontekst i opis formularza w czytelny sposób informuje, do czego on służy.</li>
                     </ol>
 
-                    <h2><strong>6. Logi Administratora</strong></h2>
+                    <h2><strong className={style.font}>6. Logi Administratora</strong></h2>
                     <ol>
                         <li>Informacje zachowaniu użytkowników w serwisie mogą podlegać logowaniu. Dane te są wykorzystywane w celu administrowania serwisem.</li>
                     </ol>
-                    <h2><strong>7. Istotne techniki marketingowe</strong></h2><ol><li>Operator stosuje analizę statystyczną ruchu na stronie, poprzez Google Analytics (Google Inc. z siedzibą w USA). Operator nie przekazuje do operatora tej usługi danych osobowych, a jedynie zanonimizowane informacje. Usługa bazuje na wykorzystaniu ciasteczek w urządzeniu końcowym użytkownika. W zakresie informacji o preferencjach użytkownika gromadzonych przez sieć reklamową Google użytkownik może przeglądać i edytować informacje wynikające z plików cookies przy pomocy narzędzia: https://www.google.com/ads/preferences/</li><li>Operator stosuje rozwiązanie automatyzujące działanie Serwisu w odniesieniu do użytkowników, np. mogące przesłać maila do użytkownika po odwiedzeniu konkretnej podstrony, o ile wyraził on zgodę na otrzymywanie korespondencji handlowej od Operatora.</li></ol>
+                    <h2><strong className={style.font}>7. Istotne techniki marketingowe</strong></h2><ol><li>Operator stosuje analizę statystyczną ruchu na stronie, poprzez Google Analytics (Google Inc. z siedzibą w USA). Operator nie przekazuje do operatora tej usługi danych osobowych, a jedynie zanonimizowane informacje. Usługa bazuje na wykorzystaniu ciasteczek w urządzeniu końcowym użytkownika. W zakresie informacji o preferencjach użytkownika gromadzonych przez sieć reklamową Google użytkownik może przeglądać i edytować informacje wynikające z plików cookies przy pomocy narzędzia: https://www.google.com/ads/preferences/</li><li>Operator stosuje rozwiązanie automatyzujące działanie Serwisu w odniesieniu do użytkowników, np. mogące przesłać maila do użytkownika po odwiedzeniu konkretnej podstrony, o ile wyraził on zgodę na otrzymywanie korespondencji handlowej od Operatora.</li></ol>
 
-                    <h2><strong>8. Informacja o plikach cookies</strong></h2>
+                    <h2><strong className={style.font}>8. Informacja o plikach cookies</strong></h2>
                     <ol>
                         <li>Serwis korzysta z plików cookies.</li>
                         <li>Pliki cookies (tzw. „ciasteczka”) stanowią dane informatyczne, w szczególności pliki tekstowe, które przechowywane są w urządzeniu końcowym Użytkownika Serwisu i przeznaczone są do korzystania ze stron internetowych Serwisu. Cookies zazwyczaj zawierają nazwę strony internetowej, z której pochodzą, czas przechowywania ich na urządzeniu końcowym oraz unikalny numer.</li>
@@ -88,7 +88,7 @@ const PrivacyPolicy = () => {
                         <li>Ograniczenia stosowania plików cookies mogą wpłynąć na niektóre funkcjonalności dostępne na stronach internetowych Serwisu.</li>
                         <li>Pliki cookies zamieszczane w urządzeniu końcowym Użytkownika Serwisu wykorzystywane mogą być również przez współpracujące z operatorem Serwisu podmioty, w szczególności dotyczy to firm: Google (Google Inc. z siedzibą w USA), Facebook (Facebook Inc. z siedzibą w USA), Twitter (Twitter Inc. z siedzibą w USA).</li>
                     </ol>
-                    <h2><strong>9. Zarządzanie plikami cookies – jak w praktyce wyrażać i cofać zgodę?</strong></h2>
+                    <h2><strong className={style.font}>9. Zarządzanie plikami cookies – jak w praktyce wyrażać i cofać zgodę?</strong></h2>
                     <ol>
                         <li>Jeśli użytkownik nie chce otrzymywać plików cookies, może zmienić ustawienia przeglądarki. Zastrzegamy, że wyłączenie obsługi plików cookies niezbędnych dla procesów uwierzytelniania, bezpieczeństwa, utrzymania preferencji użytkownika może utrudnić,&nbsp;a w skrajnych przypadkach może uniemożliwić korzystanie ze stron www</li>
                         <li>W celu zarządzania ustawienia cookies wybierz z listy poniżej przeglądarkę internetową, której używasz i postępuj zgodnie z instrukcjami:
