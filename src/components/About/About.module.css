@@ -64,16 +64,16 @@
     padding: 0 2rem;
 }
 
-.service_infoDescList {
-    font-size: 1.2rem;
-    line-height: 1.5;
-    padding: 0 3.5rem;
-
-}
 
 .service_infoDesc::first-letter {
     font-size: 2rem;
     color: rgb(var(--accent));
+    vertical-align: bottom;
+}
+
+.service_infoDescList {
+    font-size: 1.2rem;
+    padding: 0 3.5rem;
 }
 
 @media (max-width:650px) {

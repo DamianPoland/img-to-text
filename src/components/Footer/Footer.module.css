@@ -15,7 +15,7 @@
     padding: 1rem;
     color: white;
     text-decoration: none;
-    opacity: 0.8;
+
 }
 
 .textLeft {
@@ -28,6 +28,7 @@
 
 .link {
     cursor: pointer;
+    opacity: 0.8;
 
 }
 
